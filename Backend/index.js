@@ -45,7 +45,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // Routes
 app.get('/', (req, res) => {
-  res.sendFile(); // Render a basic homepage
+  res.sendFile('index'); // Render a basic homepage
 });
 
 // Start the server
