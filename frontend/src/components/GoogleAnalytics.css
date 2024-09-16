@@ -1,0 +1,35 @@
+.google-analytics-container {
+  padding: 20px;
+  background: linear-gradient(135deg, #e260ff, #0073ff);
+  border-radius: 10px;
+  min-height: 100vh;
+}
+
+.google-analytics-heading {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.google-analytics-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.analysis-type-dropdown {
+  margin-left: 10px;
+  width: 150px;
+}
+
+.google-analytics-cards {
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.ant-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
