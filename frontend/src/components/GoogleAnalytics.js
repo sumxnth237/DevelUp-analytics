@@ -29,7 +29,7 @@ const GoogleAnalytics = () => {
     try {
       setLoading(true);
 
-      const response = await axios.post('http://localhost:4010/api/develup/ga/allData', {
+      const response = await axios.post('https://app.develup.in/api/develup/ga/allData', {
         startDate: startDate.format('YYYY-MM-DD'),
         endDate: endDate.format('YYYY-MM-DD'),
       });
