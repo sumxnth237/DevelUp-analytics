@@ -45,7 +45,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // Routes
 app.get('/', (req, res) => {
-  res.render('dashboard'); // Render a basic homepage
+  res.json("DevelUp Analytics") // Render a basic homepage
 });
 
 // Start the server
