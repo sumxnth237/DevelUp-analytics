@@ -14,8 +14,10 @@ const freshLeadsRoutes = require("./routes/freshLeadsRoutes");
 const app = express();
 
 const corsOptions = {
-  origin: 'https://devel-up-analytics-frontend-8ee0qta6a-sumanth-s-royals-projects.vercel.app', // Replace with your frontend URL
-  optionsSuccessStatus: 200
+  origin: 'https://devel-up-analytics-frontend.vercel.app', // Replace with your frontend URL
+  optionsSuccessStatus: 200, 
+  methods: ["POST","GET"],
+  credentials: true
 };
 app.use(cors(corsOptions));
 // Middleware
