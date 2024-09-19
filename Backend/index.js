@@ -14,11 +14,7 @@ const freshLeadsRoutes = require("./routes/freshLeadsRoutes");
 const app = express();
 
 const corsOptions = {
-<<<<<<< HEAD
-  origin: 'http://localhost:3000', // Replace with your frontend URL
-=======
   origin: 'https://devel-up-analytics-frontend.vercel.app', // Replace with your frontend URL
->>>>>>> origin/main
   optionsSuccessStatus: 200, 
   methods: ["POST","GET"],
   credentials: true

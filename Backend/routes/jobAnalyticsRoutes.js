@@ -49,18 +49,14 @@ router.get("/jobs-by-period", async (req, res) => {
 
     // Count the total number of job posts within the range
     const jobCount = await Jobs.countDocuments({
-<<<<<<< HEAD
+
       createdAt: { $gte: startDate, $lte: endDate },
-=======
-      updatedAt: { $gte: startDate, $lte: endDate },
->>>>>>> origin/main
     });
 
     // Aggregation query to group by the desired period
     let groupBy;
     switch (type) {
       case "daily":
-<<<<<<< HEAD
         groupBy = { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } }; // Group by date
         break;
       case "weekly":
@@ -71,18 +67,6 @@ router.get("/jobs-by-period", async (req, res) => {
         break;
       case "yearly":
         groupBy = { $month: "$createdAt" }; // Group by month number
-=======
-        groupBy = { $dateToString: { format: "%Y-%m-%d", date: "$updatedAt" } }; // Group by date
-        break;
-      case "weekly":
-        groupBy = { $dayOfWeek: "$updatedAt" }; // Group by day of the week
-        break;
-      case "monthly":
-        groupBy = { $week: "$updatedAt" }; // Group by week number
-        break;
-      case "yearly":
-        groupBy = { $month: "$updatedAt" }; // Group by month number
->>>>>>> origin/main
         break;
     }
 
@@ -90,11 +74,7 @@ router.get("/jobs-by-period", async (req, res) => {
     const jobData = await Jobs.aggregate([
       {
         $match: {
-<<<<<<< HEAD
           createdAt: { $gte: startDate, $lte: endDate },
-=======
-          updatedAt: { $gte: startDate, $lte: endDate },
->>>>>>> origin/main
         },
       },
       {
