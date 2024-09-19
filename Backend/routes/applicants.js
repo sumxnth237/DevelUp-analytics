@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Applicant = require('../models/Applicant'); // Adjust path as necessary
+<<<<<<< HEAD
 const moment = require('moment');
+=======
+>>>>>>> origin/main
 
 // Total Applicants
 // perfect
@@ -19,6 +22,7 @@ router.get('/total-applicants', async (req, res) => {
 router.get('/applicants-by-job', async (req, res) => {
   try {
     const data = await Applicant.aggregate([
+<<<<<<< HEAD
       // Group applicants by job_id and count the number of applicants per job
       { 
         $group: { 
@@ -54,17 +58,26 @@ router.get('/applicants-by-job', async (req, res) => {
       }
     ]);
     
+=======
+      { $group: { _id: "$job_id", count: { $sum: 1 } } },
+      { $sort: { count: -1, _id: 1 } }
+    ]);
+>>>>>>> origin/main
     res.json(data);
   } catch (error) {
     res.status(500).json({ error: 'Server Error' });
   }
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 // Applicants by Status
 // perfect
 router.get('/applicants-by-status', async (req, res) => {
   try {
+<<<<<<< HEAD
     const { type, date } = req.query; // Query params for type of analysis (daily, weekly, etc.) and date
 
     // Ensure a valid date is provided
@@ -113,13 +126,23 @@ router.get('/applicants-by-status', async (req, res) => {
     ]);
 
     res.json(data); // Return the filtered and aggregated data
+=======
+    const data = await Applicant.aggregate([
+      { $group: { _id: "$status", count: { $sum: 1 } } },
+      { $sort: { count: -1, _id: 1 } }
+    ]);
+    res.json(data);
+>>>>>>> origin/main
   } catch (error) {
     res.status(500).json({ error: 'Server Error' });
   }
 });
 
+<<<<<<< HEAD
 module.exports = router;
 
+=======
+>>>>>>> origin/main
 // Applicants with Scheduled Interviews
 // could finetune saying which and all are the interviews scheduled
 router.get('/interviews-scheduled', async (req, res) => {
@@ -206,8 +229,13 @@ router.get('/applications-by-month', async (req, res) => {
       const data = await Applicant.aggregate([
         {
           $project: {
+<<<<<<< HEAD
             month: { $month: "$createdAt" }, // Extracts the month from createdAt
             year: { $year: "$createdAt" } // Extracts the year from createdAt
+=======
+            month: { $month: "$updatedAt" }, // Extracts the month from createdAt
+            year: { $year: "$updatedAt" } // Extracts the year from createdAt
+>>>>>>> origin/main
           }
         },
         {

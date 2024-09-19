@@ -4,7 +4,10 @@ import './applicantAnalytics.css';
 import Modal from 'react-modal';
 import { Bar } from 'react-chartjs-2';  // Import Bar chart from react-chartjs-2
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+<<<<<<< HEAD
 import moment from 'moment';
+=======
+>>>>>>> origin/main
 
 // Register components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -16,8 +19,11 @@ function ApplicantAnalytics() {
   const [totalApplicants, setTotalApplicants] = useState(0);
   const [applicantsByJob, setApplicantsByJob] = useState([]);
   const [applicantsByStatus, setApplicantsByStatus] = useState([]);
+<<<<<<< HEAD
   const [statusPeriod, setStatusPeriod] = useState('daily');  // Default to 'daily'
   const [statusDate, setStatusDate] = useState(moment().format('YYYY-MM-DD'));  // Default to today
+=======
+>>>>>>> origin/main
   const [interviewsScheduled, setInterviewsScheduled] = useState(0);
   const [offerLettersScheduled, setOfferLettersScheduled] = useState(0);
   const [rejectedApplicants, setRejectedApplicants] = useState(0);
@@ -33,7 +39,11 @@ function ApplicantAnalytics() {
         const [totalResponse, jobResponse, statusResponse, interviewsResponse, offerLettersResponse, rejectedResponse, monthResponse] = await Promise.all([
           api.get('/applicants/total-applicants'),
           api.get('/applicants/applicants-by-job'),
+<<<<<<< HEAD
           api.get(`/applicants/applicants-by-status?type=${statusPeriod}&date=${statusDate}`), // Fetch based on selected period and date
+=======
+          api.get('/applicants/applicants-by-status'),
+>>>>>>> origin/main
           api.get('/applicants/interviews-scheduled'),
           api.get('/applicants/offer-letters-scheduled'),
           api.get('/applicants/rejected-applicants'),
@@ -54,7 +64,11 @@ function ApplicantAnalytics() {
     };
 
     fetchData();
+<<<<<<< HEAD
   }, [statusPeriod, statusDate]);
+=======
+  }, []);
+>>>>>>> origin/main
 
   const openModal = (title, data) => {
     setModalContent({ title, data });
@@ -78,6 +92,7 @@ function ApplicantAnalytics() {
           },
         ],
       });
+<<<<<<< HEAD
     }
 
     else if (title === 'Applicants by Status') {
@@ -98,6 +113,8 @@ function ApplicantAnalytics() {
           },
         ],
       });
+=======
+>>>>>>> origin/main
     } else {
       setChartData(null);  // Clear chart data for other modals
     }
@@ -107,13 +124,20 @@ function ApplicantAnalytics() {
 
   const closeModal = () => {
     setModalIsOpen(false);
+<<<<<<< HEAD
     setChartData(null);  // Reset chart data when modal is closed
+=======
+    setChartData(false);  // Reset chart data when modal is closed
+>>>>>>> origin/main
   };
 
   return (
     <div className="applicant-analytics-container">
       <h1>Applicant Analytics</h1>
+<<<<<<< HEAD
       
+=======
+>>>>>>> origin/main
       <div className="analytics-card">
         <h2>Total Applicants</h2>
         <p>{totalApplicants}</p>
@@ -123,7 +147,11 @@ function ApplicantAnalytics() {
         <h2>Applicants by Job</h2>
         <ul>
           {applicantsByJob.slice(0, 10).map(item => (
+<<<<<<< HEAD
             <li key={item._id}>Job: {item.job_title}, {item.company_name}, Count: {item.count}</li>
+=======
+            <li key={item._id}>Job ID: {item._id}, Count: {item.count}</li>
+>>>>>>> origin/main
           ))}
         </ul>
         <button onClick={() => openModal('Applicants by Job', applicantsByJob)}>Show Detailed Analytics</button>
@@ -131,6 +159,7 @@ function ApplicantAnalytics() {
 
       <div className="analytics-card">
         <h2>Applicants by Status</h2>
+<<<<<<< HEAD
 
         {/* Date and Period Select */}
         <div>
@@ -152,13 +181,18 @@ function ApplicantAnalytics() {
           </select>
         </div>
 
+=======
+>>>>>>> origin/main
         <ul>
           {applicantsByStatus.map(item => (
             <li key={item._id}>Status: {item._id}, Count: {item.count}</li>
           ))}
         </ul>
+<<<<<<< HEAD
 
         <button onClick={() => openModal('Applicants by Status', applicantsByStatus)}>Show Detailed Analytics</button>
+=======
+>>>>>>> origin/main
       </div>
 
       <div className="analytics-card">
@@ -176,7 +210,10 @@ function ApplicantAnalytics() {
         <p>{rejectedApplicants}</p>
       </div>
 
+<<<<<<< HEAD
       {/* Applications by Month with modal and chart */}
+=======
+>>>>>>> origin/main
       <div className="analytics-card">
         <h2>Applications by Month</h2>
         <ul>
@@ -211,18 +248,39 @@ function ApplicantAnalytics() {
                     display: true,
                     position: 'top',
                   },
+<<<<<<< HEAD
                 },
                 scales: {
                   x: { title: { display: true, text: 'Month' } },
                   y: { title: { display: true, text: 'Count' } }
                 },
+=======
+                  tooltip: {
+                    callbacks: {
+                      label: function(tooltipItem) {
+                        return `${tooltipItem.label}: ${tooltipItem.raw}`;
+                      }
+                    }
+                  }
+                },
+                scales: {
+                  x: { title: { display: true, text: 'Month-Year' } },
+                  y: { title: { display: true, text: 'Applications Count' } }
+                }
+>>>>>>> origin/main
               }} 
             />
           </div>
         ) : (
           <ul>
             {modalContent.data.map((item, index) => (
+<<<<<<< HEAD
               <li key={index}>{item.job_title}, {item.company_name} : {item.count}</li>
+=======
+              <li key={index}>
+                {item._id}: {item.count}
+              </li>
+>>>>>>> origin/main
             ))}
           </ul>
         )}
