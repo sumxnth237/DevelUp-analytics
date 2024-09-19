@@ -1,7 +1,11 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://devel-up-analytics-backend.vercel.app/api', // your backend 
+// <<<<<<< development
+//   baseURL: 'https://devel-up-analytics-backend.vercel.app/api', // your backend 
+// =======
+  baseURL: 'https://devel-up-analytics-backend.vercel.app/api', // your backend URL
+// >>>>>>> main
 });
 
 export default api;

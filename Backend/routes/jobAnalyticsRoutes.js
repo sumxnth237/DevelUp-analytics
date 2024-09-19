@@ -49,6 +49,7 @@ router.get("/jobs-by-period", async (req, res) => {
 
     // Count the total number of job posts within the range
     const jobCount = await Jobs.countDocuments({
+
       createdAt: { $gte: startDate, $lte: endDate },
     });
 

@@ -3,6 +3,7 @@ const router = express.Router();
 const Applicant = require('../models/Applicant'); // Adjust path as necessary
 const moment = require('moment');
 
+
 // Total Applicants
 // perfect
 router.get('/total-applicants', async (req, res) => {
@@ -60,7 +61,6 @@ router.get('/applicants-by-job', async (req, res) => {
   }
 });
 
-
 // Applicants by Status
 // perfect
 router.get('/applicants-by-status', async (req, res) => {
@@ -117,8 +117,6 @@ router.get('/applicants-by-status', async (req, res) => {
     res.status(500).json({ error: 'Server Error' });
   }
 });
-
-module.exports = router;
 
 // Applicants with Scheduled Interviews
 // could finetune saying which and all are the interviews scheduled
@@ -206,6 +204,7 @@ router.get('/applications-by-month', async (req, res) => {
       const data = await Applicant.aggregate([
         {
           $project: {
+
             month: { $month: "$createdAt" }, // Extracts the month from createdAt
             year: { $year: "$createdAt" } // Extracts the year from createdAt
           }
