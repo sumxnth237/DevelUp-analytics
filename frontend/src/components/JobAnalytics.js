@@ -103,11 +103,7 @@ function JobAnalytics() {
         <div className="analytics-card">
           <h2>Companies Job Posts</h2>
           <ul>
-<<<<<<< HEAD
             {companiesJobPosts.slice(0, 10).map(item => (
-=======
-            {companiesJobPosts.slice(0, 5).map(item => (
->>>>>>> origin/main
               <li key={item._id}>{item._id}: {item.job_count}</li>
             ))}
           </ul>
@@ -127,11 +123,7 @@ function JobAnalytics() {
         <div className="analytics-card">
           <h2>Companies Positions</h2>
           <ul>
-<<<<<<< HEAD
             {companiesPositions.slice(0, 10).map(item => (
-=======
-            {companiesPositions.slice(0, 5).map(item => (
->>>>>>> origin/main
               <li key={item._id}>{item._id}: {item.total_positions}</li>
             ))}
           </ul>
@@ -141,11 +133,7 @@ function JobAnalytics() {
         <div className="analytics-card">
           <h2>Job Titles</h2>
           <ul>
-<<<<<<< HEAD
             {jobTitles.slice(0, 10).map(item => (
-=======
-            {jobTitles.slice(0, 5).map(item => (
->>>>>>> origin/main
               <li key={item._id}>{item.job_title}: {item.applicant_count}</li>
             ))}
           </ul>
