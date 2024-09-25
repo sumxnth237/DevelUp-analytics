@@ -15,7 +15,7 @@ const app = express();
 
 const corsOptions = {
 // <<<<<<< development
-   origin: 'https://devel-up-analytics-fronten-git-2c130b-sumanth-s-royals-projects.vercel.app', // Replace with your frontend URL
+   origin: 'https://devel-up-analytics-frontend.vercel.app', // Replace with your frontend URL
 // =======
 // origin: 'http://localhost:3000', // Replace with your frontend URL
 // >>>>>>> main
