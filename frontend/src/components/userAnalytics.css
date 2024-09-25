@@ -1,7 +1,7 @@
 .user-analytics-container-1 {
   /* padding: 20px; */
   background: linear-gradient(135deg, #e260ff, #0073ff);
-  color: white;
+  color: black;
   text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-wrap: wrap;
@@ -13,7 +13,7 @@
   padding: 20px;
   padding-top: 0px;
   background: linear-gradient(135deg, #e260ff, #0073ff);
-  color: white;
+  color: #ffffff;
   text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-wrap: wrap;
@@ -22,14 +22,14 @@
 }
 
 .analytics-card {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 20px;
-  padding-top: 0px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  flex: 1 1 calc(50% - 20px); /* 2 cards per row with space in between */
-  max-width: calc(50% - 20px); /* Ensure cards don't overflow */
-  box-sizing: border-box; /* Include padding and border in width calculation */
+  background: white;
+  color: black;
+    border-radius: 20px;
+    padding: 2rem;
+    min-width: 300px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
 .analytics-card h2 {

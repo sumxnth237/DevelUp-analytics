@@ -131,7 +131,7 @@ router.get('/users-by-degree', async (req, res) => {
     try {
         const degreeCounts = await User.aggregate([
             { $unwind: "$education_details" },
-            { $group: { _id: "$education_details.degree", count: { $sum: 1 } } },
+            { $group: { _id: { $toLower: { $trim: { input: "$education_details.degree" } } }, count: { $sum: 1 } } },
             { $sort: { count: -1, _id: 1 } }
         ]);
         res.json(degreeCounts);
@@ -158,7 +158,7 @@ router.get('/users-by-skill', async (req, res) => {
     try {
         const skillCounts = await User.aggregate([
             { $unwind: "$skills.career_skills" },
-            { $group: { _id: "$skills.career_skills", count: { $sum: 1 } } },
+            { $group: { _id: { $toLower: { $trim: { input: "$skills.career_skills" } } }, count: { $sum: 1 } } },
             { $sort: { count: -1, _id: 1 } }
         ]);
         res.json(skillCounts);
@@ -174,7 +174,7 @@ router.get('/users-by-city', async (req, res) => {
             {
                 $project: {
                     city: {
-                        $ifNull: [ { $trim: { input: "$user_profile.address.city" } }, "Not mentioned" ] // Replace null or empty with "unregistered"
+                        $ifNull: [ { $toLower: { $trim: { input: "$user_profile.address.city" } } }, "Not mentioned" ] // Replace null or empty with "unregistered"
                     }
                 }
             },
