@@ -84,20 +84,16 @@ function UserAnalytics() {
       <div className="analytics-card">
         <h2>Users by Job Title</h2>
         <ul>
-          {jobTitleData.slice(2, 7).map(item => (
+          {jobTitleData.slice(2, 12).map(item => (
             <li key={item._id}>{item._id}: {item.count}</li>
           ))}
         </ul>
         {/* <button onClick={() => openModal('Users by Job Title', jobTitleData)}>Show Detailed Analytics</button> */}
       </div>
       <div className="analytics-card">
-        <h2>Average Age of Users</h2>
-        <p>{averageAge}</p>
-      </div>
-      <div className="analytics-card">
         <h2>Users by Education Degree</h2>
         <ul>
-          {degreeData.slice(0, 5).map(item => (
+          {degreeData.slice(0, 10).map(item => (
             <li key={item._id}>{item._id}: {item.count}</li>
           ))}
         </ul>
@@ -113,9 +109,13 @@ function UserAnalytics() {
         {/* <button onClick={() => openModal('Users by Experience', experienceData)}>Show Detailed Analytics</button> */}
       </div>
       <div className="analytics-card">
+        <h2>Average Age of Users</h2>
+        <p>{averageAge}</p>
+      </div>
+      <div className="analytics-card">
         <h2>Users by Skill</h2>
         <ul>
-          {skillData.slice(0, 5).map(item => (
+          {skillData.slice(0, 10).map(item => (
             <li key={item._id}>{item._id}: {item.count}</li>
           ))}
         </ul>
@@ -124,7 +124,7 @@ function UserAnalytics() {
       <div className="analytics-card">
         <h2>Users by City</h2>
         <ul>
-          {cityData.slice(0, 5).map(item => (
+          {cityData.slice(0, 10).map(item => (
             <li key={item._id}>{item._id}: {item.count}</li>
           ))}
         </ul>

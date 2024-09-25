@@ -12,6 +12,7 @@ function Dashboard() {
   const [applicantCount, setApplicantCount] = useState(0);
   const [jobCount, setJobCount] = useState(0);
   const [leadCount, setLeadCount] = useState(0);
+  const [waCount, setWACount] = useState(0);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [analysisType, setAnalysisType] = useState('daily'); // daily, weekly, monthly, yearly
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -36,6 +37,10 @@ function Dashboard() {
 
     api.get('/fresh-leads/total-leads').then(response => {
       setLeadCount(response.data.totalLeads);
+    });
+
+    api.get('/whatsapp/whatsapp-analytics').then(response => {
+      setWACount(response.data.totalUsers);
     });
   }, []);
 
@@ -62,6 +67,10 @@ function Dashboard() {
 
   const freshleads = () => {
     navigate('/fresh-leads')
+  }
+
+  const whatsappp = () => {
+    navigate('/whatsapp')
   }
 
   const closeModal = () => {
@@ -115,6 +124,10 @@ function Dashboard() {
         <div className="dashboard-card" onClick={freshleads}>
           <h2>Leads</h2>
           <p>{leadCount}</p>
+        </div>
+        <div className="dashboard-card" onClick={whatsappp}>
+          <h2>WhatsApp Analytics</h2>
+          <p>{waCount} users</p>
         </div>
       </div>
 

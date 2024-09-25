@@ -7,6 +7,7 @@ import GoogleAnalytics from './components/GoogleAnalytics'
 import GoogleAnalyticsDetails from './components/GoogleAnalyticsDetails';
 import JobAnalytics from './components/JobAnalytics'
 import FreshLeads from './components/FreshLeads'
+import WhatsAppAnalytics from './components/WhatsappAnallytics';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
         <Route path="/google-analytics/campaign-analytics-(users)" element={<GoogleAnalyticsDetails />} />
         <Route path='/job-analytics' element={<JobAnalytics />} />
         <Route path='/fresh-leads' element={<FreshLeads />} />
-
+        <Route path='/whatsapp' element={<WhatsAppAnalytics />} />
       </Routes>
     </Router>
   );

@@ -59,6 +59,6 @@ const applicantsSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Applicant = new mongoose.model("applicant", applicantsSchema);
+const Applicant = new mongoose.model("applicants", applicantsSchema);
 
 module.exports = Applicant;

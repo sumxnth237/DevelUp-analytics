@@ -98,6 +98,91 @@ router.get("/jobs-by-period", async (req, res) => {
   }
 });
 
+router.get("/jobs-by-updated", async (req, res) => {
+  try {
+    const { type, date } = req.query; // Query params for type of analysis and date
+
+    // Ensure a valid date is provided
+    if (!date || !moment(date).isValid()) {
+      return res.status(400).json({ error: "Invalid date provided" });
+    }
+
+    let startDate, endDate;
+    switch (type) {
+      case "daily":
+        startDate = moment(date).startOf("day").toDate();
+        endDate = moment(date).endOf("day").toDate();
+        break;
+      case "weekly":
+        startDate = moment(date).startOf("week").toDate();
+        endDate = moment(date).endOf("week").toDate();
+        break;
+      case "monthly":
+        startDate = moment(date).startOf("month").toDate();
+        endDate = moment(date).endOf("month").toDate();
+        break;
+      case "yearly":
+        startDate = moment(date).startOf("year").toDate();
+        endDate = moment(date).endOf("year").toDate();
+        break;
+      default:
+        return res.status(400).json({ error: "Invalid period type" });
+    }
+
+    // console.log("Start Date:", startDate);
+    //     console.log("End Date:", endDate);
+
+
+    // Count the total number of job posts within the range
+    const jobCount = await Jobs.countDocuments({
+
+      updatedAt: { $gte: startDate, $lte: endDate },
+    });
+
+    // Aggregation query to group by the desired period
+    let groupBy;
+    switch (type) {
+      case "daily":
+        groupBy = { $dateToString: { format: "%Y-%m-%d", date: "$updatedAt" } }; // Group by date
+        break;
+      case "weekly":
+        groupBy = { $dayOfWeek: "$updatedAt" }; // Group by day of the week
+        break;
+      case "monthly":
+        groupBy = { $week: "$updatedAt" }; // Group by week number
+        break;
+      case "yearly":
+        groupBy = { $month: "$updatedAt" }; // Group by month number
+        break;
+    }
+
+    // Run aggregation to get the grouped data
+    const jobData = await Jobs.aggregate([
+      {
+        $match: {
+          updatedAt: { $gte: startDate, $lte: endDate },
+        },
+      },
+      {
+        $group: {
+          _id: groupBy,
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $sort: { _id: 1 },
+      },
+    ]);
+
+    // Return both total job posts and the detailed activity
+    res.json({
+      total: jobCount,  // Total jobs in the given period
+      activity: jobData, // Detailed breakdown of jobs by period
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to get job posts by period" });
+  }
+});
 
 // Route 2: Get job titles and their applicant count
 router.get("/job-titles", async (req, res) => {

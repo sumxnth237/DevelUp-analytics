@@ -8,7 +8,7 @@
     align-items: center;
     /* justify-content: center; */
     font-family: 'Arial', sans-serif;
-    color: #ffffff;
+    color: black;
   }
   
   /* Title styling */
@@ -26,7 +26,7 @@
   
   /* Individual card styling */
   .dashboard-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: white;
     border-radius: 20px;
     padding: 2rem;
     min-width: 300px;
